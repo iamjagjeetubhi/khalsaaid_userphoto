@@ -141,7 +141,6 @@ onclick="upload();">
 
 <footer class="footer footer-transparent">
 <div class="container">
-
 </div>
 </footer>
 </div>
@@ -206,6 +205,7 @@ onclick="upload();">
 <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
 <script src="{% static 'assets/js/paper-dashboard.js' %}"></script>
 <script src="{% static 'assets/js/cropper.min.js' %}"></script>
+<script src="{% static 'assets/js/clipboard.min.js' %}"></script>
 
 
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
@@ -214,16 +214,55 @@ onclick="upload();">
 
 <script type="text/javascript">
 $().ready(function(){
-    upload();
+
+    
 		demo.checkFullPageBackgroundImage();
 
+
+
+upload();
 		setTimeout(function(){
 				// after 1000 ms we add the class animated to the login/register card
 				$('.card').removeClass('card-hidden');
 				}, 700)
 		});
 
-function upload(){swal({
+function upload(){
+
+$('#copydiv').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(btn, message) {
+  $(btn).tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip(btn) {
+  setTimeout(function() {
+    $(btn).tooltip('hide');
+  }, 1000);
+}
+
+  var clipboard = new Clipboard('#copydiv');
+clipboard.on('success', function(e) {
+  setTooltip(e.trigger, 'Copied!');
+  hideTooltip(e.trigger);
+});
+
+clipboard.on('error', function(e) {
+  setTooltip(e.trigger, 'Failed!');
+  hideTooltip(e.trigger);
+});
+
+
+  
+ 
+   var button = '<button type="button" id="copydiv" class="btn btn-info btn-simple btn-rotate" ><span class="btn-label"><i class="ti-files"></i></span>Copy profile link</button>';
+   
+  swal({
   
   html:
   	'<p>Enter your Instagram Username </p>'+'<img class="avatar border-white" src="{% static 'assets/img/faces/4.png' %}" alt="instagram"/>'+
@@ -277,11 +316,16 @@ function upload(){swal({
 
                     var username = $('#swal-input1').val();        
                     var user_low = username.toLowerCase(); 
+
                                        swal({
                         title: 'Thanks for your Support',
                         type: 'success',
                         html:
-                          'Hi @<b>'+user_low+'</b>, your photo created <b>successfully</b>',
+                          'Hi @<b>'+user_low+'</b>,'+
+          '<button id="copydiv" class="swal2-styled" '+
+    'data-clipboard-text="In the support of KHALSAAID use @igappdotme to create and post a photo on your profile! #khalsaaid #supportkhalsaaid #khalsaaidigapp #khalsaaidsupporters'+
+      '">copy caption</button>'+
+      'to your clipboard first and then downlaod your photo',
                         showCloseButton: true,
                         showCancelButton: false,
                         focusConfirm: false,

@@ -8,5 +8,6 @@ python manage.py runserver --nothreading --noreload
 175             return True
 /instabot/bot/bot.py
 161 comment
+173 comment
 pip install instabot==0.3.3.21
 pip install PyYAML
