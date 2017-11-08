@@ -17,5 +17,5 @@ class Posts(models.Model):
     created_time = models.CharField(max_length=200, blank=True)
     message = models.CharField(max_length=10000, blank=True)
 
-class EmailSent(models.Model):
-	post_id = models.CharField(max_length=200, blank=True)
+class photoUpload(models.Model):
+	username = models.CharField(max_length=200, blank=True)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import SubscriberForm, PostsForm, EmailSentForm
-from .models import Subscribers, Posts, EmailSent
+from .forms import SubscriberForm, PostsForm, photoUploadForm
+from .models import Subscribers, Posts, photoUpload
 from datetime import datetime
 from pytz import timezone
 from django.core.mail import EmailMessage

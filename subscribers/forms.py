@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subscribers, Posts, EmailSent
+from .models import Subscribers, Posts, photoUpload
 
 class SubscriberForm(forms.ModelForm):
     class Meta:
@@ -10,7 +10,7 @@ class PostsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ('post_id','created_date','created_time', 'message',)
-class EmailSentForm(forms.ModelForm):
+class photoUploadForm(forms.ModelForm):
 	class Meta:
-		model = EmailSent
-		fields = ('post_id',)
+		model = photoUpload
+		fields = ('username',)
