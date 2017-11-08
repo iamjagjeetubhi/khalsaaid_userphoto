@@ -4,16 +4,23 @@ from .models import Subscribers, Posts, photoUpload
 from datetime import datetime
 from pytz import timezone
 from django.core.mail import EmailMessage
-from decouple import config
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import time
+import json
 from django.conf import settings
-import subprocess
-import os
+from decouple import config
 import sys
+import os
 import time
 import random
 from tqdm import tqdm
 import argparse
 import subprocess
+from django.core.mail import EmailMessage
+from PIL import Image, ImageOps, ImageDraw, ImageFont
+from django.views import generic
+#sys.path.append(os.path.join(sys.path[0], '/home/jagjeet/Documents/khalsaaid/instagram_login/instabot/'))
 from instabot import Bot, API
 api=API()
 bot = Bot()
