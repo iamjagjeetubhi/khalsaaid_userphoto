@@ -34,7 +34,7 @@ def uploadPhoto(username):
                 caption = caption +' '+ hashtags 
                 if bot.uploadPhoto(settings.MEDIA_ROOT+'/uploaded_images/'+username+'.jpg',caption=caption) is True:
                     print("photo uploaded successfully")
-                    bot.logout()
+                    #bot.logout()
                 else:
                     print("photo failed to upload")
                     bot.logout()
